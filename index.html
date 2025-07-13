@@ -180,64 +180,6 @@
         <div class="scroll-to-top" onclick="scrollToTop()">⬆️</div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const welcomeScreen = document.getElementById('welcome-screen');
-            const loadingScreen = document.getElementById('loading-screen');
-            const mainContent = document.getElementById('main-content');
-            const loadButton = document.getElementById('load-button');
-
-            // Initially show the welcome screen and hide others
-            welcomeScreen.classList.add('active');
-            loadingScreen.classList.remove('active');
-            mainContent.classList.remove('active'); // Ensure main content is hidden initially
-
-            if (loadButton) {
-                loadButton.addEventListener('click', () => {
-                    welcomeScreen.classList.remove('active');
-                    loadingScreen.classList.add('active');
-
-                    // Simulate content loading for 2 seconds before showing main content
-                    setTimeout(() => {
-                        loadingScreen.classList.remove('active');
-                        mainContent.classList.add('active');
-                        // Ensure the body can scroll again once content is loaded
-                        document.body.style.overflow = 'auto';
-                    }, 2000); 
-                });
-            }
-
-            // Scroll to Top functionality for the main content
-            window.scrollToTop = function() {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            };
-
-            // Show/hide scroll-to-top button based on scroll position
-            const scrollTopButton = document.querySelector('.scroll-to-top');
-            if (scrollTopButton) {
-                window.addEventListener('scroll', () => {
-                    if (window.scrollY > 200) { // Show button after scrolling 200px
-                        scrollTopButton.style.display = 'block';
-                    } else {
-                        scrollTopButton.style.display = 'none';
-                    }
-                });
-            }
-
-            // Smooth scroll for navigation links (optional, as scroll-behavior: smooth is in CSS)
-            document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault(); // Prevent default anchor jump
-
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                });
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
