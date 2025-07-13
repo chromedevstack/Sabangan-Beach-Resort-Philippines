@@ -1,0 +1,13 @@
+.hero-section {
+    background-image: url('https://raw.githubusercontent.com/yourusername/your-repo/main/assets/images/MainBGIMG.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    position: relative;
+}
