@@ -1,25 +1,25 @@
-/* --- Loading Screen Styles (from first CSS snippet) --- */
+/* --- Loading Screen Styles --- */
 
 /* Basic body styling for initial loading state */
 body {
     margin: 0;
     font-family: Arial, sans-serif; /* This will be overridden by Inter later for main content */
-    display: flex;
+    display: flex; /* Used for centering loading screens */
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     background-color: #f0f0f0;
-    overflow: hidden; /* Prevent scrollbars during transitions for loading screens */
+    overflow: hidden; /* Prevent scrollbars during initial transitions of loading screens */
 }
 
-/* Screen Base Styles */
+/* Screen Base Styles for welcome, loading, and main content divs */
 .screen {
-    position: absolute;
+    position: absolute; /* Allows screens to overlay each other */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    display: flex;
+    display: flex; /* Default for loading/welcome screens */
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -28,10 +28,9 @@ body {
     padding: 20px;
     text-align: center;
     opacity: 0;
-    visibility: hidden;
+    visibility: hidden; /* Hidden by default */
     transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
-    /* Ensure z-index for stacking, main-content will need lower or dynamic z-index */
-    z-index: 100; /* Higher z-index for loading/welcome screens */
+    z-index: 100; /* Higher z-index for loading/welcome screens to be on top */
 }
 
 .screen.active {
@@ -101,18 +100,17 @@ body {
 }
 
 /* Main Content Specific Styles (for the demo structure) */
-/* This will be hidden by default and activated by JS */
+/* This div will transition from being an overlay to being the main scrollable content */
 #main-content {
     background-color: #e9ecef; /* A light background for the content area */
-    /* When main-content is active, it should no longer be absolute to allow scrolling */
+    /* When #main-content becomes active, its display and positioning change
+       to allow normal document flow and scrolling. */
     position: relative; /* Allow normal document flow */
     min-height: 100vh; /* Ensure content pushes footer down */
     width: 100%; /* Take full width */
-    /* Remove flexbox centering if content needs to flow normally */
     display: block; /* Change from flex to block for normal document flow */
-    padding: 0; /* Reset padding if necessary */
-    /* Lower z-index so loading screens can cover it */
-    z-index: 1;
+    padding: 0; /* Reset padding to be controlled by inner sections */
+    z-index: 1; /* Lower z-index so loading screens can cover it initially */
 }
 
 
@@ -135,13 +133,16 @@ body {
     }
 }
 
-/* --- Sabangan Beach Resort Styles (from second CSS snippet) --- */
+/* --- Sabangan Beach Resort Website Styles --- */
 
-/* General body styling for main website content */
+/* General body styling for main website content
+   This overrides the initial body styles once #main-content is active. */
 body {
     font-family: 'Inter', sans-serif; /* Using Inter font as linked in HTML, overrides previous font */
-    /* When main content is visible, ensure normal scrolling */
-    overflow-y: auto; /* Allow vertical scrolling */
+    overflow-y: auto; /* Allow vertical scrolling once main content is loaded */
+    display: block; /* Reset display to default block behavior for overall page */
+    align-items: stretch; /* Reset alignment */
+    justify-content: flex-start; /* Reset justification */
 }
 
 /* Hero Section */
@@ -150,7 +151,7 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 70vh; /* Use min-height if content might expand */
+    min-height: 70vh; /* Use min-height to ensure it adapts to content, but also has a minimum size */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -164,7 +165,7 @@ body {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background-color: #0d9488; /* Teal-600 */
+    background-color: #0d9488; /* Tailwind's teal-600 */
     color: white;
     padding: 12px 15px;
     border-radius: 50%;
@@ -181,7 +182,7 @@ body {
     transform: translateY(-2px);
 }
 
-/* Ensure smooth scrolling for anchors */
+/* Ensure smooth scrolling for anchors across the whole page */
 html {
     scroll-behavior: smooth;
 }
